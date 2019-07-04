@@ -32,7 +32,7 @@ namespace EFCore.GlobalQueryFiltersSample
                 options.MinimumSameSitePolicy = SameSiteMode.None;
             });
 
-            services.AddDbContext<SampleDbContext>(options => options.UseInMemoryDatabase("Sample"));
+            services.AddDbContext<SampleDbContext>(options => options.UseInMemoryDatabase("Sample2"));
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
         }

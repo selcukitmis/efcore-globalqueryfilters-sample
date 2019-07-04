@@ -20,9 +20,19 @@ namespace EFCore.GlobalQueryFiltersSample
         public bool IsRemoved { get; set; }
     }
 
+    [Table("Books")]
+    public class Book : IRemovable
+    {
+        [Key]
+        public Guid BookId { get; set; }
+        public string Name { get; set; }
+        public bool IsRemoved { get; set; }
+    }
+
     public class SampleDbContext : DbContext
     {
         public DbSet<User> Users { get; set; }
+        public DbSet<Book> Books { get; set; }
         private static readonly MethodInfo ConfigureGlobalFiltersMethodInfo = typeof(SampleDbContext).GetMethod(nameof(ConfigureGlobalFilters), BindingFlags.Instance | BindingFlags.NonPublic);
 
         public SampleDbContext(DbContextOptions<SampleDbContext> options) : base(options)

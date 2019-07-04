@@ -34,6 +34,24 @@ namespace EFCore.GlobalQueryFiltersSample.Controllers
                 };
 
             _context.Users.AddRange(users);
+
+            var books = new List<Book>
+                {
+                    new Book {
+                        BookId = Guid.NewGuid(),
+
+                        Name = "iki",
+                        IsRemoved = false
+                    },
+                    new Book {
+                        BookId = Guid.NewGuid(),
+                        Name = "Anıl",
+                        IsRemoved = true
+                    }
+                };
+            _context.Books.AddRange(books);
+
+
             _context.SaveChanges();
         }
 
@@ -44,6 +62,13 @@ namespace EFCore.GlobalQueryFiltersSample.Controllers
 
             ViewBag.Users = users;
             ViewBag.AllUsers = allUsers;
+
+            var books = _context.Books.ToList();
+            var allBooks = _context.Books.IgnoreQueryFilters().ToList();
+
+            ViewBag.Books = books;
+            ViewBag.AllBooks = allBooks;
+
 
             return View();
         }
